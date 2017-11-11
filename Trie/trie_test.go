@@ -8,7 +8,7 @@ import (
 )
 
 func TestTrie(t *testing.T) {
-	tree := NewHash()
+	tree := New()
 
 	in := []byte("bar")
 	key := "foo"
@@ -65,13 +65,13 @@ func BenchmarkHashSet(b *testing.B) {
 	for _, size := range cases {
 		b.Run(fmt.Sprintf("keySize%d", size), func(b *testing.B) {
 			data := getTestData(b, 5000, size)
-			var tree HashTrie
+			var tree Trie
 
 			b.ReportAllocs()
 			b.ResetTimer()
 			for i := 0; i < b.N; i++ {
 				if i%len(data) == 0 {
-					tree = NewHash()
+					tree = New()
 				}
 
 				tree.Set(data[i%len(data)], []byte{byte(i)})
@@ -84,7 +84,7 @@ func BenchmarkHashGet(b *testing.B) {
 	for _, size := range cases {
 		b.Run(fmt.Sprintf("keySize%d", size), func(b *testing.B) {
 			data := getTestData(b, 5000, size)
-			tree := NewHash()
+			tree := New()
 			for j, key := range data {
 				tree.Set(key, []byte{byte(j)})
 			}

@@ -1,5 +1,7 @@
 package trie
 
+// Add benchmarks for Set/Get using a builtin map[string][]byte in place of a Trie.
+
 import (
 	"fmt"
 	"testing"
